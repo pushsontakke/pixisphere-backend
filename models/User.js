@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         enum: ['client', 'partner', 'admin',],
         default: 'client'
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    partnerProfile: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PartnerProfile',
     }
 },
     { timestamps: true }
