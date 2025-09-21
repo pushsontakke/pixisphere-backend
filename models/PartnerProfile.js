@@ -50,4 +50,6 @@ partnerProfileSchema.index({ verificationState: 1 });
 // Compound index for matching by category AND location
 partnerProfileSchema.index({ 'serviceDetails.categories': 1, 'serviceDetails.locations': 1 });
 
+partnerProfileSchema.index({'Portfolio.orderIndex': 1});
+
 module.exports = mongoose.model('PartnerProfile', partnerProfileSchema);
