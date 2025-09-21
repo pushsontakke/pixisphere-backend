@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     // name: {
     //     type: String,
     //     required: true
@@ -24,9 +24,10 @@ const userSchema = new Schema({
         required: true,
         enum: ['client', 'partner', 'admin',],
         default: 'client'
-    },
-    timestamp: true,
-});
+    }
+},
+    { timestamps: true }
+);
 
 userSchema.pre('save', async function (next) {
     if(!this.isModified('password')) return next();

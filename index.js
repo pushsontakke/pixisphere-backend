@@ -8,16 +8,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
-
 const connectDB = require('./config/db');
 connectDB();
 
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-    res.send("Hello World")
+    res.send("Pixisphere")
 })
 
+const router = require('./routes/auth');
+app.use('/api/auth', router);
 
 
 
