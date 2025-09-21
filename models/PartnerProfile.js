@@ -16,8 +16,8 @@ const partnerProfileSchema = new mongoose.Schema({
         address: { street: String, city: String, state: String, zipCode: String, }
     },
     serviceDetails: {
-        categories: [{ type: String }],
-        locations: [{ type: String }],
+        categories: [{ type: String, trim: true }],
+        locations: [{ type: String, trim: true }],
         experience: { type: Number },
     },
     documentMetadata: {
@@ -46,5 +46,8 @@ const partnerProfileSchema = new mongoose.Schema({
 partnerProfileSchema.index({ 'serviceDetails.categories': 1 });
 partnerProfileSchema.index({ 'serviceDetails.locations': 1 });
 partnerProfileSchema.index({ verificationState: 1 });
+
+// Compound index for matching by category AND location
+partnerProfileSchema.index({ 'serviceDetails.categories': 1, 'serviceDetails.locations': 1 });
 
 module.exports = mongoose.model('PartnerProfile', partnerProfileSchema);
